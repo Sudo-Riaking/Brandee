@@ -11,6 +11,10 @@
     --primary-accent-light: #FFC1CC;
     --primary-accent-dark: #FF91A4;
     --primary-dark: #E8A0BF;
+    --primary-color: #FFB6C1;
+    --rose-accent: rgba(255, 182, 193, 1);
+    --gradient-rose: linear-gradient(135deg, #FFB6C1 0%, #E8A0BF 100%);
+    --shadow-rose: 0 4px 20px rgba(255, 182, 193, 0.25);
     --premium-accent: #E8A0BF;
     --premium-accent-light: #F0B6D3;
     --premium-accent-dark: #D690C2;
