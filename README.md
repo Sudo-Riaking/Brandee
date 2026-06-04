@@ -1,10 +1,10 @@
-# Site Personnel - Ria Insa
+# Site Personnel - Mariama DIOP
 
 Un site web moderne, professionnel et minimaliste pour Mariama Diop, étudiante en ingénierie informatique.
 
 ## 🎯 Objectif
 
-Présenter un profil sérieux, engagé et compétent, mettant en avant des projets tech, des engagements associatifs et une volonté claire de créer un impact utile dans la communauté.
+Ce Portfolio a pour but de présenter mon profil sérieux, engagé et compétent, mettant en avant des projets tech, des engagements associatifs et une volonté claire de créer un impact utile dans la communauté.
 
 ## 🎨 Design & Style
 
