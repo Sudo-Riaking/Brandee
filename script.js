@@ -2,6 +2,210 @@
 const cursor = document.querySelector('.cursor');
 const cursorFollower = document.querySelector('.cursor-follower');
 
+const translationDictionary = {
+    'Accueil': 'Home',
+    'À propos': 'About',
+    'Projets': 'Projects',
+    'Engagement': 'Engagement',
+    'Compétences': 'Skills',
+    'Contact': 'Contact',
+    'Découvrir mes réalisations': 'Discover my work',
+    'Entrer en contact': 'Get in touch',
+    'Ce que je fais': 'What I do',
+    'Développement Logiciel': 'Software Development',
+    'Réalisation de sites et d’applications web simples, structurés et adaptés aux besoins utilisateurs.': 'Building simple, structured websites and applications tailored to user needs.',
+    'Web': 'Web',
+    'PHP/MySQL': 'PHP/MySQL',
+    'JavaScript': 'JavaScript',
+    'Intelligence Artificielle': 'Artificial Intelligence',
+    'Découverte et utilisation d’outils IA pour créer des chatbots, automatiser certaines tâches et enrichir des projets web.': 'Exploring and using AI tools to create chatbots, automate tasks, and enrich web projects.',
+    'IA appliquée': 'Applied AI',
+    'Intégration de Chatbots': 'Chatbot Integration',
+    'Systèmes & Réseaux': 'Systems & Networks',
+    'Mise en place, configuration et maintenance d’outils IT, systèmes Linux, réseaux et solutions de gestion de parc.': 'Deploying, configuring, and maintaining IT tools, Linux systems, networks, and infrastructure management solutions.',
+    'Objectifs professionnels': 'Professional Goals',
+    'Formation & Innovation': 'Training & Innovation',
+    'Renforcer mes compétences en développement logiciel, intelligence artificielle et systèmes d’information tout au long de mon cycle d’ingénieur.': 'Strengthen my skills in software development, artificial intelligence, and information systems throughout my engineering program.',
+    'En cours': 'In progress',
+    'Expérience terrain': 'Field Experience',
+    'Acquérir de l’expérience en entreprise sur des projets concrets : développement web, support IT, réseaux et bases de données.': 'Gain corporate experience on real projects: web development, IT support, networks, and databases.',
+    'En progression': 'Advancing',
+    'Entrepreneuriat Tech': 'Tech Entrepreneurship',
+    'Développer à terme des solutions numériques utiles aux PME, à l’agriculture et aux organisations locales.': 'Eventually build useful digital solutions for SMEs, agriculture, and local organizations.',
+    'En développement': 'In development',
+    'Centres d’intérêt techniques': 'Technical Interests',
+    'Cybersécurité': 'Cybersecurity',
+    'Bases de données': 'Databases',
+    'Leadership associatif': 'Associative Leadership',
+    'Mes projets': 'My projects',
+    'Terminé': 'Completed',
+    'Voir le site': 'View site',
+    'Code source': 'Source code',
+    'Contexte': 'Context',
+    'Projet de gestion intelligente de flotte avec chatbot, conçu pour faciliter le suivi et l’organisation des informations de transport.': 'Intelligent fleet management project with chatbot, designed to simplify tracking and organizing transport information.',
+    'Solution Technique': 'Technical Solution',
+    'Bases de données microservices avec FastAPI front-end, Python back-end, base MySQL et intégration ML pour recommandations.': 'Microservices database with FastAPI front-end, Python back-end, MySQL database, and ML integration for recommendations.',
+    'Stack Technique': 'Tech Stack',
+    'Résultats': 'Results',
+    'Projet en développement permettant de pratiquer les API REST, la logique backend et la gestion de données.': 'Project in development to practice REST APIs, backend logic, and data management.',
+    'Aperçu': 'Preview',
+    'Plateforme de suivi de tension artérielle': 'Blood Pressure Monitoring Platform',
+    'Stage ATECH': 'ATECH Internship',
+    'Documentation': 'Documentation',
+    'Projet réalisé dans le cadre de mon stage chez ATECH-CYBERSÉCURITÉ pour le suivi de la pression artérielle avec géolocalisation.': 'Project delivered during my internship at ATECH-CYBERSÉCURITÉ for blood pressure monitoring with geolocation.',
+    'Bases de données Technique': 'Technical Database',
+    'Développement d’une plateforme web en HTML, PHP et MySQL pour recevoir, analyser et visualiser les données collectées.': 'Development of a web platform in HTML, PHP and MySQL to receive, analyze, and visualize collected data.',
+    'Technologies': 'Technologies',
+    'Performance': 'Performance',
+    'Projet combinant développement web, base de données, composants IoT et visualisation de données en temps réel.': 'Project combining web development, database, IoT components, and real-time data visualization.',
+    'Gestion CAN': 'CAN Management',
+    'Projet académique': 'Academic Project',
+    'Démo en ligne': 'Online demo',
+    'Objectif Métier': 'Business Objective',
+    'Application web académique pour organiser les données liées à une compétition CAN : équipes, joueurs, stades, matchs et poules.': 'Academic web application to organize CAN competition data: teams, players, stadiums, matches, and groups.',
+    'Implémentation': 'Implementation',
+    'Système hybride de filtrage collaboratif et content-based avec traitement Chatbots et modèles deep learning.': 'Hybrid collaborative filtering and content-based system with chatbot processing and deep learning models.',
+    'Métriques de Succès': 'Success Metrics',
+    'Projet utile pour renforcer la logique métier, la conception de base de données et le développement web dynamique.': 'Useful project to strengthen business logic, database design, and dynamic web development.',
+    'Projets en cours': 'Projects in progress',
+    'Plateforme Linux PHP/MySQL': 'Linux PHP/MySQL Platform',
+    'Bases de données distribuée avec conteneurisation Géolocalisation et pipelines CI/CD pour déploiement continu.': 'Distributed database with containerization, geolocation, and CI/CD pipelines for continuous deployment.',
+    'En amélioration': 'Improving',
+    'Moteur de Traitement Chatbots': 'Chatbot Processing Engine',
+    'Développement progressif du projet avec FastAPI, MySQL et chatbot pour consolider mes bases en backend et API REST.': 'Progressive development of the project with FastAPI, MySQL, and chatbot to reinforce backend and REST API foundations.',
+    'Expériences & Engagements': 'Experience & Engagements',
+    'Expérience terrain': 'On-site experience',
+    'Stagiaire en informatique': 'IT Intern',
+    'Système IoT de suivi de tension artérielle': 'IoT system for blood pressure monitoring',
+    'Migration vers le cloud et JavaScript': 'Migration to cloud and JavaScript',
+    'Maintenance informatique, réseaux et terrain': 'IT maintenance, networks, and field work',
+    'mois de stage': 'months of internship',
+    'Recueil des besoins IT et cahiers de charge': 'Gathering IT requirements and specifications',
+    'Installation et configuration GLPI': 'Installing and configuring GLPI',
+    'Liaison LDAP, SSO et serveur Linux local': 'LDAP, SSO, and local Linux server integration',
+    'Leadership associatif d’Équipe': 'Team Associative Leadership',
+    'Enactus ESP & 2X Xamxam': 'Enactus ESP & 2X Xamxam',
+    'Adjointe du pôle IT Enactus ESP': 'Deputy of the IT team at Enactus ESP',
+    'Participation au site vitrine du club': 'Participation in the club showcase website',
+    'Formation de lycéens en programmation, IA et IoT': 'Training high school students in programming, AI, and IoT',
+    'Plusieurs': 'Several',
+    'ateliers animés': 'workshops led',
+    'Compétences techniques': 'Technical Skills',
+    'Intelligence Artificielle': 'Artificial Intelligence',
+    'IA appliquée': 'Applied AI',
+    'Outils IA': 'AI Tools',
+    'Chatbots & Traitement Langage': 'Chatbots & Language Processing',
+    'Machine Learning débutant': 'Beginner Machine Learning',
+    'Chatbot & Azure': 'Chatbot & Azure',
+    'Géolocalisation & Docker': 'Geolocation & Docker',
+    'Réseaux Cisco': 'Cisco Networks',
+    'Services réseaux': 'Network Services',
+    'Méthodologies & Outils': 'Methodologies & Tools',
+    'Génie logiciel': 'Software Engineering',
+    'Git & Version Control': 'Git & Version Control',
+    'Figma & VS Code': 'Figma & VS Code',
+    'Bases de données Patterns': 'Database Patterns',
+    'Formation & certifications': 'Education & Certifications',
+    'Formation Académique': 'Academic Education',
+    'Ingénierie Informatique': 'Computer Engineering',
+    'Développement web': 'Web Development',
+    'Bases de données Logicielle': 'Software Databases',
+    'Objectifs Professionnels': 'Professional Objectives',
+    'Excellence académique': 'Academic excellence',
+    'Réussir mon cycle d’ingénieur et consolider mes bases techniques': 'Complete my engineering program and strengthen my technical foundations',
+    'Construire des projets utiles combinant web, données et outils IA': 'Build useful projects combining web, data, and AI tools',
+    'Contribuer aux projets IT d’Enactus ESP et accompagner les plus jeunes': 'Contribute to Enactus ESP IT projects and support younger students',
+    'Créer à terme des solutions numériques adaptées aux besoins africains': 'Ultimately build digital solutions tailored to African needs',
+    'Parcours': 'Journey',
+    'Formation': 'Education',
+    'Baccalauréat Série S2 - École Mariama Niasse': 'S2 Science Baccalaureate - École Mariama Niasse',
+    'DST Informatique - École Supérieure Polytechnique de Dakar': 'DST Computer Science - École Supérieure Polytechnique de Dakar',
+    'DIC Informatique - École Supérieure Polytechnique de Dakar': 'DIC Computer Science - École Supérieure Polytechnique de Dakar',
+    'Objectifs Professionnels': 'Professional Objectives',
+    'Excellent académique': 'Academic Excellence',
+    'Développement web & IA': 'Web development & AI',
+    'Leadership associatif': 'Associative leadership',
+    'Entrepreneuriat Tech': 'Tech entrepreneurship',
+    'L\'innovation distingue un leader d\'un suiveur.': 'Innovation distinguishes a leader from a follower.',
+    'Le code est comme l\'humour. Quand vous avez à l\'expliquer, c\'est que c\'est mauvais.': 'Code is like humor. When you have to explain it, it is bad.',
+    'La meilleure façon de prédire l\'avenir est de l\'inventer.': 'The best way to predict the future is to invent it.',
+    'Disponible pour un stage, des projets web, des missions freelance ou des collaborations techniques.': 'Available for internship, web projects, freelance missions, or technical collaborations.',
+    'LinkedIn Professionnel': 'Professional LinkedIn',
+    'GitHub': 'GitHub',
+    '© 2026 Mariama Diop. Élève ingénieure informatique & développeuse web junior.': '© 2026 Mariama Diop. Computer engineering student & junior web developer.'
+};
+
+const altTranslationDictionary = {
+    'Aperçu Plateforme E-Learning': 'Preview E-Learning Platform',
+    'Aperçu API de Gestion': 'Preview API Management',
+    'Aperçu Système IA': 'Preview AI System'
+};
+
+const originalTextNodes = [];
+
+function initI18n() {
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+        acceptNode(node) {
+            return node.textContent.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+        }
+    });
+
+    let node;
+    while (node = walker.nextNode()) {
+        originalTextNodes.push({ node, text: node.textContent });
+    }
+}
+
+function setLanguage(lang) {
+    document.documentElement.lang = lang;
+
+    originalTextNodes.forEach(({ node, text }) => {
+        const trimmed = text.trim();
+        if (translationDictionary[trimmed]) {
+            node.textContent = text.replace(trimmed, lang === 'en' ? translationDictionary[trimmed] : trimmed);
+        } else {
+            node.textContent = text;
+        }
+    });
+
+    document.querySelectorAll('img').forEach(img => {
+        const alt = img.getAttribute('alt');
+        if (!alt) return;
+        if (lang === 'en' && altTranslationDictionary[alt]) {
+            img.setAttribute('alt', altTranslationDictionary[alt]);
+        } else if (lang === 'fr') {
+            const originalAlt = Object.keys(altTranslationDictionary).find(key => altTranslationDictionary[key] === alt);
+            if (originalAlt) {
+                img.setAttribute('alt', originalAlt);
+            }
+        }
+    });
+
+    const titleText = lang === 'en'
+        ? 'Mariama Diop - Computer Engineering Student & Junior Web Developer'
+        : 'Mariama Diop - Élève Ingénieure Informatique & Développeuse Web Junior';
+    document.title = titleText;
+
+    const toggle = document.getElementById('lang-toggle');
+    if (toggle) {
+        toggle.textContent = lang === 'en' ? 'Français' : 'English';
+        toggle.dataset.lang = lang;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initI18n();
+    setLanguage('fr');
+
+    const langToggle = document.getElementById('lang-toggle');
+    if (langToggle) {
+        langToggle.addEventListener('click', () => {
+            const next = langToggle.dataset.lang === 'fr' ? 'en' : 'fr';
+            setLanguage(next);
+        });
+    }
+});
+
 document.addEventListener('mousemove', (e) => {
     cursor.style.left = e.clientX + 'px';
     cursor.style.top = e.clientY + 'px';
@@ -335,8 +539,8 @@ window.addEventListener('load', () => {
 });
 
 // Add CSS for loaded state
-const style = document.createElement('style');
-style.textContent = `
+const loadedStyle = document.createElement('style');
+loadedStyle.textContent = `
     body {
         opacity: 0;
         transition: opacity 0.5s ease;
@@ -372,7 +576,7 @@ style.textContent = `
         }
     }
 `;
-document.head.appendChild(style);
+document.head.appendChild(loadedStyle);
 
 // Intersection Observer for better performance
 const observerOptions = {
